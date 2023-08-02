@@ -33,6 +33,16 @@ h1 {
 
 .TodoForm {
   width: 100%;
+
+}
+
+.todo-clear-btn{
+  background: #fb4444;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 .todo-input {
@@ -56,6 +66,7 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+  
   
 }
 

@@ -3,6 +3,8 @@ import { TodoForm } from "./TodoForm";
 import { Todo } from "./Todo";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 uuidv4();
 
 export const TodoWrapper = () => {
@@ -14,6 +16,11 @@ export const TodoWrapper = () => {
       { id: uuidv4(), task: todo, completed: false, isEditing: false }
     ])
     console.log(todos);
+  };
+  const clearTodo = () => {
+    setTodos([]);
+    toast.error('Todo List Cleared');
+
   };
   const toggleComplete=id=>{
     setTodos(
@@ -27,6 +34,7 @@ export const TodoWrapper = () => {
     setTodos(todos.filter(todo => todo.id!==id))
   }
 
+  
   const editTodo = id =>{
     setTodos(todos.map(todo=>todo.id===id?{...
     todo, isEditing: !todo.isEditing}:todo))
@@ -42,18 +50,21 @@ export const TodoWrapper = () => {
   return (
     <div className="TodoWrapper">
         <h1>Get Things Done!</h1>
-      <TodoForm addTodo={addTodo} />
+      <TodoForm addTodo={addTodo} clearTodo={clearTodo}/>
       {todos.map((todo, index)=>(
         todo.isEditing?(
             <EditTodoForm editTodo={editTask} task={todo}/>
         ):(
             <Todo task={todo} key={index}
             toggleComplete={toggleComplete}
-            deleteTodo={deleteTodo} editTodo={editTodo}/>
+            deleteTodo={deleteTodo} editTodo={editTodo} clearTodo={clearTodo}/>
 
         )
 
       ))}
+      <button onClick={clearTodo} className="todo-clear-btn">
+        Clear
+      </button>
     </div>
   );
 };

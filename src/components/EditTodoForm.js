@@ -8,7 +8,7 @@ export const EditTodoForm = ({editTodo, task}) => {
         e.preventDefault();
         
        
-       const regex = /^\S+$/;
+        const regex = /^(\S+\s?)+$/;
 
        if(value.length>0 && regex.test(value)){
         editTodo(value,task.id)
@@ -17,7 +17,7 @@ export const EditTodoForm = ({editTodo, task}) => {
         toast.error('Please Enter Valid Task')
        }
 
-       setValue('')
+       
     }
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
