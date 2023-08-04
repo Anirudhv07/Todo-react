@@ -66,7 +66,7 @@ export const TodoWrapper = () => {
 
         )
 
-      ))}
+      )}
       <button onClick={clearTodo} className="todo-clear-btn">
         Clear
       </button>
